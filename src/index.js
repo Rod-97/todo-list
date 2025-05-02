@@ -1,4 +1,11 @@
 import "./styles.css";
-import { test } from "./test.js";
+import { Todo } from "./todo";
 
-console.log(test);
+const todo = new Todo(
+  "Complete to-do list",
+  "Description",
+  new Date("2025-05-05"),
+  "High"
+);
+
+console.log(todo);
