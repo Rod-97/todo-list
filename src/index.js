@@ -1,6 +1,6 @@
 import "./styles.css";
-import { Todo } from "./todo";
-import { Project } from "./project";
+import { Todo } from "./modules/todo";
+import { Project } from "./modules/project";
 
 const todo1 = new Todo(
   "Complete to-do list",
