@@ -7,4 +7,12 @@ export class Todo {
     this.priority = priority;
     this.done = false;
   }
+
+  updatePriority(newPriority) {
+    this.priority = newPriority;
+  }
+
+  toggleCompletion() {
+    this.done = !this.done;
+  }
 }
