@@ -9,6 +9,10 @@ export class Project {
     this.todos.push(todo);
   }
 
+  getAllTodos() {
+    return this.todos;
+  }
+
   findTodoById(id) {
     return this.todos.find((todo) => todo.id === id);
   }

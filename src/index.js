@@ -1,7 +1,9 @@
 import "./styles.css";
 import { Todo } from "./modules/todo";
 import { Project } from "./modules/project";
-
+import { AppController } from "./modules/app-controller";
+import { clearLocalStorage } from "./modules/storage";
+/*
 const todo1 = new Todo(
   "Complete to-do list",
   "Description",
@@ -14,10 +16,12 @@ const todo2 = new Todo(
   new Date("2025-06-06"),
   "Medium"
 );
+*/
 
-const project = new Project("Programming");
+clearLocalStorage();
 
-project.addTodo(todo1);
-project.addTodo(todo2);
-
-console.log(project);
+const app = new AppController();
+app.loadInitialData();
+app.addProject("Project 1");
+app.addProject("Project 2");
+app.addProject("Project 3");
