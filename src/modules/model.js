@@ -1,4 +1,40 @@
-export class Model {}
+export class Model {
+  constructor() {
+    this.projects = [];
+  }
+
+  findProject(projectId) {
+    this.projects.find((p) => p.id === projectId);
+  }
+
+  createProject(projectName) {
+    const newProject = new Project(projectName);
+    this.projects.push(newProject);
+    this.saveToLocalStorage();
+  }
+
+  removeProject(projectId) {
+    this.projects = this.projects.filter((p) => p.id !== projectId);
+    this.saveToLocalStorage();
+  }
+
+  createTodo(projectId, title, description, dueDate, priority) {
+    const newTodo = new Todo(title, description, dueDate, priority);
+    const project = this.findProject(projectId);
+    project.push(newTodo);
+    this.saveToLocalStorage();
+  }
+
+  saveToLocalStorage() {
+    localStorage.setItem("projects", JSON.stringify(this.projects));
+  }
+
+  loadFromLocalStorage() {
+    const storedProjects = localStorage.getItem("projects");
+    if (storedProjects) return JSON.parse(storedProjects);
+    return [];
+  }
+}
 
 class Project {
   constructor(name) {
@@ -41,18 +77,4 @@ class Todo {
   toggleCompletion() {
     this.done = !this.done;
   }
-}
-
-function saveToLocalStorage(projects) {
-  localStorage.setItem("projects", JSON.stringify(projects));
-}
-
-function loadFromLocalStorage() {
-  const storedProjects = localStorage.getItem("projects");
-  if (storedProjects) return JSON.parse(storedProjects);
-  return [];
-}
-
-function clearLocalStorage() {
-  localStorage.removeItem("projects");
 }
