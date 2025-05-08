@@ -11,6 +11,7 @@ export class Model {
     const newProject = new Project(projectName);
     this.projects.push(newProject);
     this.saveToLocalStorage();
+    return newProject;
   }
 
   removeProject(projectId) {

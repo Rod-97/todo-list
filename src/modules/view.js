@@ -2,16 +2,17 @@ export class View {
   constructor() {
     this.content = document.querySelector("#content");
     this.createProjectBtn = document.querySelector("#create-project-btn");
+    this.projectsContainer = document.querySelector("#projects-container");
   }
 
-  renderProjects(projects) {
-    const projectsContainer = document.createElement("div");
-    projects.forEach((project) => {
-      const projectDiv = document.createElement("div");
-      projectDiv.textContent = project.name;
-      projectsContainer.appendChild(projectDiv);
-    });
-    this.content.appendChild(projectsContainer);
+  renderProject(project) {
+    const projectDiv = document.createElement("div");
+    projectDiv.textContent = project.name;
+    this.projectsContainer.appendChild(projectDiv);
+  }
+
+  renderAllProjects(projects) {
+    projects.forEach((project) => this.renderProject(project));
   }
 
   bindCreateProject(handler) {

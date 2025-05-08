@@ -1,3 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  background-color: rebeccapurple;
+  background-color: blue;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#content {
+  border: 3px solid red;
+}
+
+@media (min-width: 1000px) {
+  body {
+    display: grid;
+    grid-template-areas:
+      "title"
+      "projects todos";
+  }
 }
