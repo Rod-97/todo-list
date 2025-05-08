@@ -4,7 +4,7 @@ export class Model {
   }
 
   findProject(projectId) {
-    this.projects.find((p) => p.id === projectId);
+    return this.projects.find((p) => p.id === projectId);
   }
 
   createProject(projectName) {
@@ -21,7 +21,13 @@ export class Model {
   createTodo(projectId, title, description, dueDate, priority) {
     const newTodo = new Todo(title, description, dueDate, priority);
     const project = this.findProject(projectId);
-    project.push(newTodo);
+    project.addTodo(newTodo);
+    this.saveToLocalStorage();
+  }
+
+  removeTodo(todoId, projectId) {
+    const project = this.findProject(projectId);
+    project.removeTodo(todoId);
     this.saveToLocalStorage();
   }
 
@@ -31,8 +37,25 @@ export class Model {
 
   loadFromLocalStorage() {
     const storedProjects = localStorage.getItem("projects");
-    if (storedProjects) return JSON.parse(storedProjects);
-    return [];
+    if (storedProjects) {
+      const data = JSON.parse(storedProjects);
+      this.projects = data.map((projectData) => {
+        const project = new Project(projectData.name);
+        project.id = projectData.id;
+        project.todos = projectData.todos.map((todoData) => {
+          const todo = new Todo(
+            todoData.title,
+            todoData.description,
+            todoData.dueDate,
+            todoData.priority
+          );
+          todo.id = todoData.id;
+          todo.done = todoData.done;
+          return todo;
+        });
+        return project;
+      });
+    }
   }
 }
 
