@@ -9,9 +9,15 @@ export class View {
     projects.forEach((project) => {
       const projectDiv = document.createElement("div");
       projectDiv.textContent = project.name;
-      console.log(project.todos);
       projectsContainer.appendChild(projectDiv);
     });
     this.content.appendChild(projectsContainer);
+  }
+
+  bindCreateProject(handler) {
+    this.createProjectBtn.addEventListener("click", () => {
+      const projectName = prompt("Enter project name");
+      if (projectName) handler(projectName);
+    });
   }
 }

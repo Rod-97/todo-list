@@ -5,5 +5,11 @@ export class Controller {
 
     this.model.loadFromLocalStorage();
     this.view.renderProjects(this.model.projects);
+    this.view.bindCreateProject(this.handleCreateProject.bind(this));
+  }
+
+  handleCreateProject(name) {
+    this.model.createProject(name);
+    this.view.renderProjects(this.model.projects);
   }
 }
