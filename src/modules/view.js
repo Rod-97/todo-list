@@ -1,8 +1,8 @@
 export class View {
   constructor() {
-    this.content = document.querySelector("#content");
     this.createProjectBtn = document.querySelector("#create-project-btn");
     this.projectsContainer = document.querySelector("#projects-container");
+    this.todosContainer = document.querySelector("#todos-container");
   }
 
   renderProject(project) {

@@ -13,15 +13,25 @@ body {
   align-items: center;
 }
 
-#content {
-  border: 3px solid red;
-}
-
 @media (min-width: 1000px) {
   body {
     display: grid;
     grid-template-areas:
-      "title"
+      "title title"
       "projects todos";
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  #title {
+    grid-area: title;
+  }
+
+  #projects-container {
+    grid-area: projects;
+  }
+
+  #todos-container {
+    grid-area: todos;
   }
 }
