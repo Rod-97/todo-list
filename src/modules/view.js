@@ -10,6 +10,8 @@ export class View {
     const projectName = document.createElement("p");
     const closeSpan = document.createElement("span");
     projectDiv.classList.add("project");
+    projectDiv.classList.add(project.id);
+    closeSpan.classList.add("close-span");
     projectName.textContent = project.name;
     closeSpan.textContent = "\u2716";
     projectDiv.appendChild(projectName);
@@ -25,6 +27,22 @@ export class View {
     this.createProjectBtn.addEventListener("click", () => {
       const projectName = prompt("Enter project name");
       if (projectName) handler(projectName);
+    });
+  }
+
+  bindDeleteProject(handler) {
+    const closeSpans = document.querySelectorAll(".close-span");
+    closeSpans.forEach((closeSpan) => {
+      closeSpan.addEventListener("click", () => {
+        const confirmation = prompt(
+          "Are you sure you want to delete this project? (yes/no)"
+        );
+        if (confirmation.toLowerCase() !== "yes") return;
+        const projectDiv = closeSpan.parentElement;
+        const projectId = projectDiv.classList[1];
+        handler(projectId);
+        projectDiv.remove();
+      });
     });
   }
 }
