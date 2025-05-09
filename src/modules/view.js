@@ -7,7 +7,13 @@ export class View {
 
   renderProject(project) {
     const projectDiv = document.createElement("div");
-    projectDiv.textContent = project.name;
+    const projectName = document.createElement("p");
+    const closeSpan = document.createElement("span");
+    projectDiv.classList.add("project");
+    projectName.textContent = project.name;
+    closeSpan.textContent = "\u2716";
+    projectDiv.appendChild(projectName);
+    projectDiv.appendChild(closeSpan);
     this.projectsContainer.appendChild(projectDiv);
   }
 

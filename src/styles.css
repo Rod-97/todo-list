@@ -11,6 +11,69 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  > * {
+    border: 3px solid red;
+  }
+}
+
+#title {
+  margin-bottom: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+#projects-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.project {
+  border: 2px solid transparent;
+  background-color: #cccccc;
+  color: blue;
+  font-weight: bold;
+  width: 250px;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  &:hover {
+    background-color: blue;
+    color: #cccccc;
+    border-color: #cccccc;
+  }
+}
+
+.project span {
+  padding: 2px;
+  background-color: red;
+  color: white;
+}
+
+#create-project-btn {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: white;
+    color: orange;
+  }
 }
 
 @media (min-width: 1000px) {
@@ -19,7 +82,7 @@ body {
     grid-template-areas:
       "title title"
       "projects todos";
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 3.5fr;
     grid-template-rows: auto 1fr;
   }
 
