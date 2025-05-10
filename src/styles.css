@@ -27,7 +27,8 @@ body {
   text-align: center;
 }
 
-#projects-container {
+#projects-container,
+#todos-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -62,7 +63,7 @@ body {
   color: white;
 }
 
-#create-project-btn {
+.create-btn {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
