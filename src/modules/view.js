@@ -19,8 +19,31 @@ export class View {
     this.projectsContainer.appendChild(projectDiv);
   }
 
-  renderAllProjects(projects) {
-    projects.forEach((project) => this.renderProject(project));
+  styleSelectedProject(projectDiv) {
+    projectDiv.style.backgroundColor = "orange";
+    projectDiv.style.borderColor = "white";
+    projectDiv.style.color = "white";
+  }
+
+  unstyleUnselectedProjects(projectDivs, selectedProjectId) {
+    projectDivs.forEach((projectDiv) => {
+      if (projectDiv.classList[1] !== selectedProjectId) {
+        projectDiv.style.backgroundColor = null;
+        projectDiv.style.borderColor = null;
+        projectDiv.style.color = null;
+      }
+    });
+  }
+
+  renderAllProjects(projects, selectedProject) {
+    projects.forEach((project) => {
+      this.renderProject(project);
+
+      if (project.id === selectedProject.id) {
+        const projectDiv = document.querySelectorAll(`.${project.id}`)[0];
+        this.styleSelectedProject(projectDiv);
+      }
+    });
   }
 
   bindCreateProject(handler) {
@@ -42,6 +65,19 @@ export class View {
         const projectId = projectDiv.classList[1];
         handler(projectId);
         projectDiv.remove();
+      });
+    });
+  }
+
+  bindSelectProject(handler) {
+    const projectDivs = document.querySelectorAll(".project");
+
+    projectDivs.forEach((projectDiv) => {
+      projectDiv.addEventListener("click", () => {
+        const projectId = projectDiv.classList[1];
+        const newSelectedProjectId = handler(projectId);
+        this.styleSelectedProject(projectDiv);
+        this.unstyleUnselectedProjects(projectDivs, newSelectedProjectId);
       });
     });
   }
